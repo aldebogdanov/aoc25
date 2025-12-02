@@ -4,7 +4,7 @@
             [hyperfiddle.rcf :refer [tests]] 
             [criterium.core :as crit]))
 
-(defn puzzle1-a
+(defn puzzle-1-a
   [input]
   (loop [counter 0
          value   50
@@ -19,7 +19,7 @@
         counter))))
 
 
-(defn puzzle2-a
+(defn puzzle-2-a
   [input]
   (loop [moves (str/split-lines input)
          position 50
@@ -37,7 +37,7 @@
 
 ;; == MORE IDEAS
 
-(defn puzzle2-b
+(defn puzzle-2-b
   [input]
   (let [position (atom 50)
         count (atom 0)]
@@ -50,7 +50,7 @@
         @count))))
 
 
-(defn puzzle1-b
+(defn puzzle-1-b
   [input]
   (second (reduce (fn [[acc cnt] move]
                     (let [a ((case (first move) \L - +) (first acc) (Long/parseLong (subs move 1)))]
@@ -59,7 +59,7 @@
                   (str/split-lines input))))
 
 
-(defn puzzle2-c
+(defn puzzle-2-c
   [input]
   (let [rf (fn 
              [acc move]
@@ -74,7 +74,7 @@
        count)))
 
 
-(defn puzzle2-d
+(defn puzzle-2-d
   [input]
   (count (into []
                (comp
@@ -91,23 +91,25 @@
 
 
 (tests
- (puzzle1-a "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82") := 3
- (puzzle1-b "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82") := 3
+ (def example "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82")
 
- (puzzle2-a "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82") := 6
- (puzzle2-b "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82") := 6
- (puzzle2-c "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82") := 6
- (puzzle2-d "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82") := 6)
+ (puzzle-1-a example) := 3
+ (puzzle-1-b example) := 3
+
+ (puzzle-2-a example) := 6
+ (puzzle-2-b example) := 6
+ (puzzle-2-c example) := 6
+ (puzzle-2-d example) := 6)
 
 
 (comment
   (def input (slurp (io/resource "day1.input")))
 
-  (crit/quick-bench (puzzle1-a input))
-  (crit/quick-bench (puzzle1-b input))
+  (crit/quick-bench (puzzle-1-a input))
+  (crit/quick-bench (puzzle-1-b input))
   
-  (crit/quick-bench (puzzle2-a input))
-  (crit/quick-bench (puzzle2-b input))
-  (crit/quick-bench (puzzle2-c input))
-  (crit/quick-bench (puzzle2-d input))
+  (crit/quick-bench (puzzle-2-a input))
+  (crit/quick-bench (puzzle-2-b input))
+  (crit/quick-bench (puzzle-2-c input))
+  (crit/quick-bench (puzzle-2-d input))
   )

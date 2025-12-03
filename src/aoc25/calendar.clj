@@ -2,7 +2,8 @@
   (:require [hyperfiddle.rcf :as rcf :refer [tests]]
             [clojure.java.io :as io]
             [aoc25.day1 :as day1]
-            [aoc25.day2 :as day2]))
+            [aoc25.day2 :as day2]
+            [aoc25.day3 :as day3]))
 
 (rcf/enable!)
 
@@ -27,4 +28,10 @@
 
  (day2/puzzle-2-a input) := 36862281418      ; 358.993867 ms
  (day2/puzzle-2-b input) := 36862281418      ; 511.376895 ms
+ 
+ "Day Three"
+ (def input (slurp (io/resource "day3.input")))
+
+ (day3/puzzle-1-a input) := 17316                ; 1.118041 ms
+ (day3/puzzle-2-a input) := 171741365473332      ; 6.047108 ms
  )
